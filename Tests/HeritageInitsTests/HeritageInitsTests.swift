@@ -28,6 +28,20 @@ final class HeritageInitsTests: XCTestCase {
                 let message: String?
                 let nextYear: Int
                 let willStart: Bool
+
+                init?(from dict: [String: Any]) {
+                    guard
+                    let title = dict["title"] as? String,
+                    let nextYear = dict["nextYear"] as? Int,
+                    let willStart = dict["willStart"] as? Bool
+                    else {
+                        return nil
+                    }
+                    self.title = title
+                    self.message = dict["message"] as? String
+                    self.nextYear = nextYear
+                    self.willStart = willStart
+                }
             }
             """,
             macros: testMacros

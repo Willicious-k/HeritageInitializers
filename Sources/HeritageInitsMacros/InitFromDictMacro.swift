@@ -10,8 +10,8 @@ public struct InitFromDictMacro: MemberMacro {
         providingMembersOf declaration: some DeclGroupSyntax,
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
-
         let memberList = declaration.memberBlock.members
+
         let storedMemberBindingList = memberList
             .compactMap {
                 $0.decl.as(VariableDeclSyntax.self)?.bindings.first
@@ -73,11 +73,4 @@ public struct InitFromDictMacro: MemberMacro {
         """
         return [result]
     }
-}
-
-@main
-struct HeritageInitsPlugin: CompilerPlugin {
-    let providingMacros: [Macro.Type] = [
-        InitFromDictMacro.self
-    ]
 }

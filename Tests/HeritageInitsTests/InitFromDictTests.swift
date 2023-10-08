@@ -8,7 +8,7 @@ let testMacros: [String: Macro.Type] = [
     "InitFromDict": InitFromDictMacro.self
 ]
 
-final class HeritageInitsTests: XCTestCase {
+final class InitFromDictTests: XCTestCase {
     func testInitFromDictMacro() throws {
         assertMacroExpansion(
             """

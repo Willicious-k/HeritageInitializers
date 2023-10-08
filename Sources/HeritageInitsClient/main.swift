@@ -8,3 +8,11 @@ struct Payload {
     let nextYear: Int
     let willStart: Bool
 }
+
+@InitFromDict
+final class ReferencePayload {
+    let title: String
+    let message: String?
+    let nextYear: Int
+    let willStart: Bool
+}

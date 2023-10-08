@@ -12,17 +12,21 @@ public struct InitFromDictMacro: MemberMacro {
     ) throws -> [DeclSyntax] {
 
         let memberList = declaration.memberBlock.members
-        let memberBindingList = memberList.compactMap {
-            $0.decl.as(VariableDeclSyntax.self)?.bindings.first
-        }
+        let storedMemberBindingList = memberList
+            .compactMap {
+                $0.decl.as(VariableDeclSyntax.self)?.bindings.first
+            }
+            .filter {
+                $0.accessorBlock == nil
+            }
 
-        guard 
-            memberBindingList.isEmpty == false 
+        guard
+            storedMemberBindingList.isEmpty == false
         else {
             return []
         }
 
-        let conditionStmts = memberBindingList
+        let conditionStmts = storedMemberBindingList
             .compactMap { binding -> String? in
                 let typeToken = binding.typeAnnotation?.as(TypeAnnotationSyntax.self)
 
@@ -36,7 +40,7 @@ public struct InitFromDictMacro: MemberMacro {
                 return #"let \#(nameToken) = dict["\#(nameToken)"] as? \#(typeText)"#
             }
 
-        let assignmentStmts = memberBindingList
+        let assignmentStmts = storedMemberBindingList
             .compactMap { binding -> String? in
                 guard
                     let nameToken = binding.pattern.as(IdentifierPatternSyntax.self)?.identifier.text

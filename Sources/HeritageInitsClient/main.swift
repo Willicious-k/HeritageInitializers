@@ -7,6 +7,9 @@ struct Payload {
     let message: String?
     let nextYear: Int
     let willStart: Bool
+    var computed: String {
+        return "hello"
+    }
 }
 
 @InitFromDict
@@ -15,4 +18,7 @@ final class ReferencePayload {
     let message: String?
     let nextYear: Int
     let willStart: Bool
+    var computed: String {
+        return "hello"
+    }
 }

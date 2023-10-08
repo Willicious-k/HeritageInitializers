@@ -18,6 +18,9 @@ final class HeritageInitsTests: XCTestCase {
                 let message: String?
                 let nextYear: Int
                 let willStart: Bool
+                var computed: String {
+                    return "hello"
+                }
             }
             """,
             expandedSource:
@@ -28,6 +31,9 @@ final class HeritageInitsTests: XCTestCase {
                 let message: String?
                 let nextYear: Int
                 let willStart: Bool
+                var computed: String {
+                    return "hello"
+                }
 
                 init?(from dict: [String: Any]) {
                     guard

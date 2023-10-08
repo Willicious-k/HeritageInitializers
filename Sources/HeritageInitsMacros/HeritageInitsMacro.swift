@@ -4,20 +4,19 @@ import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 
+public struct InitFromDictMacro: MemberMacro {
+    static public func expansion(
+        of node: AttributeSyntax,
+        providingMembersOf declaration: some DeclGroupSyntax,
+        in context: some MacroExpansionContext
+    ) throws -> [DeclSyntax] {
+        return []
+    }
+}
+
 @main
 struct HeritageInitsPlugin: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
-        InitFromDict.self
+        InitFromDictMacro.self
     ]
-}
-
-struct InitFromDict: MemberMacro {
-    static func expansion(
-        of node: SwiftSyntax.AttributeSyntax,
-        providingMembersOf declaration: some SwiftSyntax.DeclGroupSyntax,
-        in context: some SwiftSyntaxMacros.MacroExpansionContext
-    ) throws -> [SwiftSyntax.DeclSyntax] {
-        <#code#>
-    }
-
 }

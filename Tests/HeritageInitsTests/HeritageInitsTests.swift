@@ -2,27 +2,35 @@
 import SwiftSyntaxMacros
 import SwiftSyntaxMacrosTestSupport
 import XCTest
-
-#if canImport(HeritageInitsMacros)
 import HeritageInitsMacros
 
-let testMacros: [String: Macro.Type] = [:]
-#endif
+let testMacros: [String: Macro.Type] = [
+    "InitFromDict": InitFromDictMacro.self
+]
 
 final class HeritageInitsTests: XCTestCase {
-    func testMacro() throws {
-        #if canImport(HeritageInitsMacros)
+    func testInitFromDictMacro() throws {
+        assertMacroExpansion(
+            """
+            @InitFromDict
+            struct Payload {
+                let title: String
+                let message: String?
+                let nextYear: Int
+                let willStart: Bool
+            }
+            """,
+            expandedSource:
+            """
 
-        #else
-        throw XCTSkip("macros are only supported when running tests for the host platform")
-        #endif
-    }
-
-    func testMacroWithStringLiteral() throws {
-        #if canImport(HeritageInitsMacros)
-
-        #else
-        throw XCTSkip("macros are only supported when running tests for the host platform")
-        #endif
+            struct Payload {
+                let title: String
+                let message: String?
+                let nextYear: Int
+                let willStart: Bool
+            }
+            """,
+            macros: testMacros
+        )
     }
 }

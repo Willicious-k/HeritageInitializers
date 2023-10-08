@@ -4,10 +4,6 @@ import SwiftSyntaxMacrosTestSupport
 import XCTest
 import HeritageInitsMacros
 
-let testMacros: [String: Macro.Type] = [
-    "InitFromDict": InitFromDictMacro.self
-]
-
 final class InitFromDictTests: XCTestCase {
     func testInitFromDictMacro() throws {
         assertMacroExpansion(
@@ -50,7 +46,7 @@ final class InitFromDictTests: XCTestCase {
                 }
             }
             """,
-            macros: testMacros
+            macros: sut
         )
     }
 }

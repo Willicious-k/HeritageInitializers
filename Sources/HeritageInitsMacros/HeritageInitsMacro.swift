@@ -33,7 +33,7 @@ public struct InitFromDictMacro: MemberMacro {
                     return nil
                 }
                 let typeText = typed.name.text
-                return "let \(nameToken) = dict[\"\(nameToken)\"] as? \(typeText)"
+                return #"let \#(nameToken) = dict["\#(nameToken)"] as? \#(typeText)"#
             }
 
         let assignmentStmts = memberBindingList
@@ -53,7 +53,7 @@ public struct InitFromDictMacro: MemberMacro {
                     return "self.\(nameToken) = \(nameToken)"
                 }
 
-                return "self.\(nameToken) = dict[\"\(nameToken)\"] as? \(optionalType)"
+                return #"self.\#(nameToken) = dict["\#(nameToken)"] as? \#(optionalType)"#
             }
 
         let result: DeclSyntax =

@@ -5,6 +5,7 @@ import SwiftSyntaxMacros
 @main
 struct HeritageInitsPlugin: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
-        InitFromDictMacro.self
+        InitFromDictMacro.self,
+        InitFromJSONStringMacro.self
     ]
 }

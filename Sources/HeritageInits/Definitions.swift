@@ -5,6 +5,7 @@ public macro InitFromDict() = #externalMacro(
     type: "InitFromDictMacro"
 )
 
+@attached(extension, conformances: Decodable)
 @attached(member, names: named(init))
 public macro InitFromJSONString() = #externalMacro(
     module: "HeritageInitsMacros",

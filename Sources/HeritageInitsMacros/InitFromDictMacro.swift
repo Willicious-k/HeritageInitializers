@@ -21,6 +21,8 @@ public struct InitFromDictMacro: MemberMacro {
             }
 
         guard
+            // TODO: 초기값이 있는 저장프로퍼티는 어떻게 처리 할까요?
+            // TODO: var 저장 프로퍼티는 어떻게 할까요?
             storedMemberBindingList.isEmpty == false
         else {
             return []
